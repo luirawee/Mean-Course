@@ -1,0 +1,38 @@
+<mat-card>
+  <form [formGroup]="form" (submit)="onSignup()">
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="E-mail"
+      />
+      <mat-error *ngIf="form.get('email')!.invalid"
+        >Please enter a valid E-mail.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <mat-error *ngIf="form.get('password')!.invalid"
+        >Please enter a valid Password.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="confirmPassword"
+        formControlName="confirmPassword"
+        placeholder="Confirm Password"
+      />
+      <mat-error *ngIf="form.get('confirmPassword')!.invalid"
+        >Please enter a valid Confirm password.</mat-error
+      >
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Signup</button>
+  </form>
+</mat-card>

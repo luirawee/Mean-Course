@@ -1,0 +1,28 @@
+<mat-accordion multi="true" *ngIf="posts.length > 0">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ post.title }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="post-image">
+      <img [src]="post.imagePath" [alt]="post.title" />
+    </div>
+    <p>{{ post.content }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated && this.userId == post.creator">
+      <button mat-button color="accent" [routerLink]="['/post/edit', post.id]">
+        Edit
+      </button>
+      <button mat-button color="warn" (click)="onDelete(post.id!)">
+        Delete
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+  *ngIf="posts.length > 0"
+  [length]="totalPosts"
+  [pageSize]="postsPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangedPage($event)"
+>
+</mat-paginator>
+<p class="info-text" *ngIf="posts.length <= 0">No posts added yet!</p>
